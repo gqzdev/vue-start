@@ -10,3 +10,37 @@
 [![gitee](https://badgen.net/badge/gitee/zhong96/orange)](https://gitee.com/zhong96)
 
 # 这在里发布关于Vue开发的案例和技术原理讲解
+
+## 说明
+|   |   |
+|--|--|
+|VueTest | 入门vue的语法知识|
+|Vuedemo | 入门vue项目开发的一些案例|
+|VuexTest | vuex的状态管理案例|
+|VueSource | vue的部分源码分析|
+
+
+
+
+## vuedemo项目中包含多个案例
+   使用npm install --save '需要的依赖'
+   配置当前项目是运行那一个 
+   在VueDemo\build\webpack.base.conf.js文件中修改
+   ```javascript
+         /*指定app主应用src*/
+      module.exports = {
+        context: path.resolve(__dirname, '../'),
+        entry: {
+          //修改src_模块即可
+          app: './src_mint-ui/main.js'
+        },
+        output: {
+          path: config.build.assetsRoot,
+          filename: '[name].js',
+          publicPath: process.env.NODE_ENV === 'production'
+            ? config.build.assetsPublicPath
+            : config.dev.assetsPublicPath
+        },
+  
+    
+    
