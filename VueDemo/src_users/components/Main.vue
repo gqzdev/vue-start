@@ -3,6 +3,7 @@
     <h2 v-show="firstView">请输入关键字搜索</h2>
     <h2 v-show="loading">请求中...</h2>
     <h2 v-show="errorMsg">{{errorMsg}}</h2>
+
     <div class="row" v-show="users.length>0">
       <div class="card" v-for="(user, index) in users" :key="index">
         <a :href="user.url" target="_blank">
@@ -15,8 +16,10 @@
 </template>
 
 <script>
+
   import PubSub from 'pubsub-js'
   import axios from 'axios'
+
   export default {
     data () {
       return {
@@ -28,8 +31,9 @@
     },
 
     mounted () {
-      // 订阅消息(search)
-      PubSub.subscribe('search', (message, searchName) => { // 点击了搜索, 发ajax请求进行搜索
+      // 订阅消息(search) subscribe [绑定事件]
+      PubSub.subscribe('search', (message, searchName) => {
+        // 点击了搜索, 发ajax请求进行搜索
 
         // 更新数据(请求中)
         this.firstView = false
@@ -44,6 +48,7 @@
             // 成功了, 更新数据(成功)
             this.loading = false
             this.users = response.data.items.map(item => ({
+              //处理属性名不一致
               url: item.html_url,
               avatarUrl: item.avatar_url,
               username: item.login
@@ -54,10 +59,6 @@
             this.loading = false
             this.errorMsg = '请求失败!'
           })
-
-
-
-
       })
     }
   }

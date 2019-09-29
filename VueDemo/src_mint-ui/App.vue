@@ -1,9 +1,10 @@
 <template>
-  <mt-button type="primary" @click.native="handleClick" style="width: 100%">Test</mt-button>
+  <mt-button type="primary" @click.native="handleClick" id="buttonTest">Test</mt-button>
 </template>
 
 <script>
   import { Toast } from 'mint-ui'
+
   export default {
     methods: {
       handleClick () {
@@ -14,5 +15,7 @@
 </script>
 
 <style>
-
+  #buttonTest{
+    width: 100%;
+  }
 </style>
